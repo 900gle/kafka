@@ -1,5 +1,8 @@
 package com.doo.kafka.service;
 
+import com.doo.kafka.dto.Doo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -16,7 +19,23 @@ public class KafkaProducer {
     }
 
     public void sendMessage(String message) {
-        System.out.println(String.format("Produce message : %s", message));
-        this.kafkaTemplate.send(TOPIC, message);
+
+        String st = "";
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+             st = objectMapper.writeValueAsString(Doo.create(message));
+
+
+            System.out.println(st);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        System.out.println(String.format("Produce message : %s", st));
+        this.kafkaTemplate.send(TOPIC, st);
     }
 }

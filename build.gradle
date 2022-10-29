@@ -27,6 +27,9 @@ dependencies {
     /* kafka */
     implementation 'org.springframework.kafka:spring-kafka'
 
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.4'
+
 
 //    implementation 'org.apache.kafka:kafka-clients:3.0.0'
 //    implementation 'org.apache.kafka:kafka-streams:3.0.0'
